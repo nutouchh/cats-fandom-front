@@ -1,13 +1,92 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family:"DotGothic16", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
+}
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-container {
+  /*margin: 3rem;*/
+  display: flex;
+  flex-wrap: wrap;
+  /*justify-content: space-between;*/
+  justify-content: center;
+  flex-grow: 1; /* Расширение на всю доступную высоту */
+}
+
+.card-link {
+  width: calc(28% - 20px);
+  /*padding-top: calc(20% - 20px);*/
+  margin: 10px;
+  height: 400px;
+  /*min-height: 200px;*/
+  /*background-color: #ffffff;*/
+  /*background-size: cover;*/
+  /*background-position: center;*/
+  /*justify-content: center;*/
+  /*position: relative;*/
+  /*border-radius: 5px;*/
+  overflow: hidden;
+}
+
+.card{
+  /*width: 80%;*/
+  height: 100%;
+  width: auto;
+    /*padding: 200px;*/
+  /*margin: 10%;*/
+  /*background-color: #ffffff;*/
+  background-size: 100% auto; /* Растягиваем изображение по ширине и подстраиваем высоту */
+  background-position: center; /* Центрируем изображение */
+  background-repeat: no-repeat; /* Отключаем повторение изображения */
+  position: relative;
+  /*background-size: contain;*/
+  /*justify-content: center;*/
+  /*display: flex;*/
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.title {
+  /*position: absolute;*/
+  bottom: 10px;
+  /*left: 0;*/
+  /*width: 100%;*/
+  /*background-color: rgba(0, 0, 0, 0.5);*/
+  padding: 10px;
+  /*height: 100%;*/
+  color: #ffffff;
+  text-align: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.prev-button, .next-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.prev-button:hover, .next-button:hover {
+  background-color: #0056b3;
 }
