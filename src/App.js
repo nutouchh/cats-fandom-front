@@ -12,6 +12,8 @@ import './index.css'
 import NotFoundPage from "./pages/NotFoundPage";
 import HomePage from "./pages/HomePage";
 import CatDetail from "./components/CatDetail";
+import Login from "./components/login/Login";
+import Signup from "./components/signup/Signup";
 
 function App() {
     return (
@@ -28,7 +30,9 @@ function App() {
                     {/*    <Route path="/agreement" element={<LicenseAgreement />} />*/}
                     {/*    */}
                     {/*</Route>*/}
-                    <Route path="/404" element={<NotFoundPage/>}/>
+                    <Route path="/signup" element={<Signup/>} />
+                    <Route path="/login" element={<Login/>} />
+                    <Route path="*" element={<NotFoundPage/>}/>
                     <Route path="/cat/:slug" element={<CatDetail />} />
                     <Route path="/" element={<HomePage />} />
                     <Route path="/space" element={<SpaceCat />} />
