@@ -3,14 +3,15 @@ import { routerReducer } from "react-router-redux"; // Импортируем ro
 import { createBrowserHistory } from 'history';
 
 // import new reducer
-// import { signupReducer } from "./components/signup/SignupReducer";
-
+import { signupReducer } from "./components/signup/SignupReducer";
+import { loginReducer } from "./components/login/LoginReducer";
 const history = createBrowserHistory();
 
 const createRootReducer = () =>
     combineReducers({
         router: routerReducer(history), // Используем routerReducer с переданным объектом history
-        // createUser: signupReducer // <--- add it here
+        createUser: signupReducer,
+        auth: loginReducer
     });
 
 export default createRootReducer;

@@ -1,77 +1,87 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import {
-    Container,
-    Button,
-    Row,
-    Col,
-    Form,
-    FormControl
-} from "react-bootstrap";
+import React, { useState } from 'react';
+import { Button, Card, Form, Input, Row, Col } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import { useDispatch } from 'react-redux'; // Импортируем хук useDispatch
+import { signupNewUser } from './SignupActions'; // Импортируем thunk-действие
 
-class Signup extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: "",
-            password: ""
-        };
-    }
-    onChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
+const Signup = observer(() => {
+    const dispatch = useDispatch(); // Получаем функцию dispatch из хука useDispatch
+    const navigate = useNavigate();
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+
+    const onChangeUsername = (e) => {
+        setUsername(e.target.value);
+        setUsernameError('');
     };
 
-    onSignupClick = () => {
+    const onChangePassword = (e) => {
+        setPassword(e.target.value);
+        setPasswordError('');
+    };
+
+    const onSignupClick = () => {
         const userData = {
-            username: this.state.username,
-            password: this.state.password
+            username,
+            password,
         };
-        console.log("Sign up " + userData.username + " " + userData.password);
+        dispatch(signupNewUser(userData)) // Вызываем thunk-действие signupNewUser с помощью dispatch
+            .then(() => {
+                navigate('/login');
+            })
+            .catch((error) => {
+                console.error('Error signing up:', error);
+                if (error.response && error.response.data) {
+                    const { username, password } = error.response.data;
+                    if (username) setUsernameError(username[0]);
+                    if (password) setPasswordError(password[0]);
+                }
+            });
     };
 
-    render() {
-        return (
-            <Container>
-                <Row>
-                    <Col md="4">
+    return (
+        <div>
+            <Row justify="center">
+                <Col span={8}>
+                    <Card>
                         <h1>Sign up</h1>
                         <Form>
-                            <Form.Group controlId="usernameId">
-                                <Form.Label>User name</Form.Label>
-                                <Form.Control
+                            <Form.Item label="User name" validateStatus={usernameError ? 'error' : ''} help={usernameError}>
+                                <Input
                                     type="text"
-                                    name="username"
                                     placeholder="Enter user name"
-                                    value={this.state.username}
-                                    onChange={this.onChange}
+                                    value={username}
+                                    onChange={onChangeUsername}
                                 />
-                                <FormControl.Feedback type="invalid"></FormControl.Feedback>
-                            </Form.Group>
+                            </Form.Item>
 
-                            <Form.Group controlId="passwordId">
-                                <Form.Label>Your password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="password"
+                            <Form.Item label="Your password"  validateStatus={passwordError ? 'error' : ''} help={passwordError}>
+                                <Input.Password
                                     placeholder="Enter password"
-                                    value={this.password}
-                                    onChange={this.onChange}
+                                    value={password}
+                                    onChange={onChangePassword}
                                 />
-                                <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
-                            </Form.Group>
+                            </Form.Item>
+
+                            <Form.Item>
+                                <Button type="primary" onClick={onSignupClick}>
+                                    Sign up
+                                </Button>
+                            </Form.Item>
                         </Form>
-                        <Button
-                            color="primary"
-                            onClick={this.onSignupClick}
-                        >Sign up</Button>
-                        <p className="mt-2">
-                            Already have account? <Link to="/login">Login</Link>
+                        <p>
+                            Already have an account? <Link to="/login">Login</Link>
                         </p>
-                    </Col>
-                </Row>
-            </Container>
-        );
-    }
-}
+                    </Card>
+                </Col>
+            </Row>
+        </div>
+    );
+});
 
 export default Signup;
+

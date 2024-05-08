@@ -4,10 +4,11 @@ import './index.css';
 import App from './App';
 // import store from './store'
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from "react-router-dom"
+// import {BrowserRouter} from "react-router-dom"
 // import {Provider} from "react-redux";
 // import './index.css';
 // import "bootstrap/dist/css/bootstrap.css";
+import "react-toastify/dist/ReactToastify.css";
 import Root from "./Root";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

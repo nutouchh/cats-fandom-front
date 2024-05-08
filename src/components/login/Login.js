@@ -1,73 +1,93 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import {
-    Container,
-    Button,
-    Row,
-    Col,
-    Form,
-    FormControl
-} from "react-bootstrap";
+import React, { useState} from "react";
+import {Button, Card, Col, Form, Input, Row} from "antd";
+import {Link, useHistory, useNavigate} from "react-router-dom";
+import {login} from "./LoginActions";
+import {useDispatch} from "react-redux";
+import {observer} from "mobx-react-lite";
 
-class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: "",
-            password: ""
-        };
-    }
-    onChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
+const Login = observer(() => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+
+    const onChangeUsername = (e) => {
+        setUsername(e.target.value);
+        setUsernameError('');
     };
 
-    onLoginClick = () => {
+    const onChangePassword = (e) => {
+        setPassword(e.target.value);
+        setPasswordError('');
+    };
+
+    const onLoginClick = () => {
+        console.log("Login button clicked"); // Добавленный вывод в консоль
         const userData = {
-            username: this.state.username,
-            password: this.state.password
-        };
-        console.log("Login " + userData.username + " " + userData.password);
-    };
-    render() {
-        return (
-            <Container>
-                <Row>
-                    <Col md="4">
-                        <h1>Login</h1>
-                        <Form>
-                            <Form.Group controlId="usernameId">
-                                <Form.Label>User name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="username"
-                                    placeholder="Enter user name"
-                                    value={this.state.username}
-                                    onChange={this.onChange}
-                                />
-                                <FormControl.Feedback type="invalid"></FormControl.Feedback>
-                            </Form.Group>
+            // username: username,
+            // password: password
+            username,
+            password
 
-                            <Form.Group controlId="passwordId">
-                                <Form.Label>Your password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="password"
-                                    placeholder="Enter password"
-                                    value={this.state.password}
-                                    onChange={this.onChange}
-                                />
-                                <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
-                            </Form.Group>
-                        </Form>
-                        <Button color="primary" onClick={this.onLoginClick}>Login</Button>
-                        <p className="mt-2">
-                            Don't have account? <Link to="/signup">Signup</Link>
-                        </p>
-                    </Col>
-                </Row>
-            </Container>
-        );
-    }
-}
+        };
+        dispatch(login(userData, "/"))
+            .then(() => {
+                navigate('/');
+            })
+            .catch((error) => {
+                console.error('Error login:', error);
+                if (error.response && error.response.data) {
+                    const { username, password } = error.response.data;
+                    if (username) setUsernameError(username[0]);
+                    if (password) setPasswordError(password[0]);
+                }
+            });
+    };
+
+    return (
+        <div>
+            <Row justify="center">
+                <Col span={8}>
+                    <Card>
+                    <h1>Login</h1>
+                    <Form>
+                        <Form.Item label="User name" validateStatus={usernameError ? 'error' : ''} help={usernameError}>
+                            <Input
+                                type="text"
+                                name="username"
+                                placeholder="Enter user name"
+                                value={username}
+                                onChange={onChangeUsername}
+                            />
+                        </Form.Item>
+
+                        <Form.Item label="Your password" validateStatus={passwordError ? 'error' : ''} help={passwordError}>
+                            <Input.Password
+                                type="password"
+                                name="password"
+                                placeholder="Enter password"
+                                value={password}
+                                onChange={onChangePassword}
+                            />
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type="primary" onClick={onLoginClick}>
+                                Login
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                    <p className="mt-2">
+                        Don't have an account? <Link to="/signup">Signup</Link>
+                    </p>
+                </Card>
+                </Col>
+            </Row>
+        </div>
+    );
+});
 
 export default Login;

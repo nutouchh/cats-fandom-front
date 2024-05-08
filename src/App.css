@@ -8,8 +8,10 @@
   text-align: center;
   /*align-items: center; не включать! Отключается фон у игр*/
   justify-content: space-around;
-  font-size: calc(0px + 2vmin);
+  font-size: 20px;
+  /*font-size: calc(0px + 2vmin);*/
   color: rgb(121, 107, 80);
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
+
