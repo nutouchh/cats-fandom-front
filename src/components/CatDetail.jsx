@@ -9,7 +9,7 @@ const CatDetail = () => {
     useEffect(() => {
         const fetchCat = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/v1/cat/${slug}/`);
+                const response = await axios.get(`/api/v1/cat/${slug}/`);
                 setCat(response.data);
             } catch (error) {
                 console.error('Error fetching cat:', error);

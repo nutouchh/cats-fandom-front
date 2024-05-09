@@ -17,14 +17,21 @@ import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
 import requireAuth from "./utils/RequireAuth";
 
-import Question from "./components/quiz/Question";
-import qBank from "./components/quiz/QuestionBank";
-import Score from "./components/quiz/Score";
-import {checkAnswer, handleFormSubmit, handleNextQuestion, handleOptionChange} from "./components/quiz/QuizLogic";
-import QuizContainer from "./components/quiz/QuizContainer";
+import Question from "./components/quiz/hard/Question";
+import qBank from "./components/quiz/hard/QuestionBank";
+import Score from "./components/quiz/hard/Score";
+import {checkAnswer, handleFormSubmit, handleNextQuestion, handleOptionChange} from "./components/quiz/hard/QuizLogic";
+import QuizContainer from "./components/quiz/hard/QuizContainer";
 import axios from "axios";
 import {connect, useSelector} from "react-redux";
 import {useAuth} from "./utils/useAuth";
+import questions from "./components/quiz/Questions";
+import Quiz from "./components/quiz/Quiz";
+import CreateCatForm from "./pages/CreateCatForm";
+import AddCatSuccessPage from "./pages/AddCatSuccessPage";
+import UserProfilePage from "./pages/UserProfilePage";
+import UserArticles from "./components/profile/UserArticles";
+import UpdateCatForm from "./pages/UpdateCatForm";
 axios.defaults.baseURL = "http://127.0.0.1:8000";
 
 // function App() {
@@ -145,6 +152,7 @@ function App() {
             <Header/>
             <Routes>
                 <Route path="/runaway" element={<RunawayCat />} />
+                <Route path="/quiz" element={<Quiz questions={questions} />} />
                 <Route path="/music" element={isAuthenticated ? <MusicRectangles /> : <Navigate to="/login?next=music" />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
@@ -152,16 +160,23 @@ function App() {
                 <Route path="/cat/:slug" element={<CatDetail />} />
                 <Route path="/" element={<HomePage />} />
                 <Route path="/space" element={<SpaceCat />} />
-                <Route path="/quiz" element={<QuizContainer
-                    questionBank={questionBank}
-                    currentQuestion={currentQuestion}
-                    selectedOption={selectedOption}
-                    score={score}
-                    quizEnd={quizEnd}
-                    // setState={this.setState.bind(this)}
-                />} />
+                <Route path="/createcat" element={<CreateCatForm />} />
+                <Route path="/updatecat/:slug" element={<UpdateCatForm />} />
+                <Route path="/success" element={<AddCatSuccessPage/>} />
+                <Route path="/profile" element={<UserProfilePage/>} />
+                <Route path="/user_articles" element={<UserArticles/>} />
+
+
+                {/*/!*<Route path="/quiz" element={<QuizContainer*!/*/}
+                {/*    questionBank={questionBank}*/}
+                {/*    currentQuestion={currentQuestion}*/}
+                {/*    selectedOption={selectedOption}*/}
+                {/*    score={score}*/}
+                {/*    quizEnd={quizEnd}*/}
+                {/*    // setState={this.setState.bind(this)}*/}
+                {/*/>} />*/}
             </Routes>
-            <Footer />
+            {/*<Footer />*/}
         </div>
     );
 }

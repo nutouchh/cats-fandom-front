@@ -115,37 +115,43 @@ function Header() {
             {/*    <h1 className='logo-text'>Котостории</h1>*/}
             {/*</div>*/}
             <Navbar className='nav-links'>
-                <div className='logo-container'>
-                    <h1 className='logo-text'>Котостории</h1>
-                </div>
+                {/*<div className='logo-container'>*/}
+                {/*    <h1 className='logo-text'>Котостории</h1>*/}
+                {/*</div>*/}
                 {/*<Navbar.Toggle/>*/}
-                <Navbar.Collapse className="justify-content-end">
+                <Navbar.Collapse >
+                    {/*<Navbar.Brand>*/}
+                    {/*    <Link to="/" className='logo-text'>Котостории</Link>*/}
+                    {/*</Navbar.Brand>*/}
                     <Nav className='nav-links'>
                         <ul>
-                        <li><Link to="/">Главная</Link></li>
-                        <li className="dropdown-wrapper">
-                            <span onClick={toggleDropdown} style={{cursor: 'pointer'}}> | Игры</span>
-                            {/* Компонент выпадающего меню */}
-                            {isDropdownOpen && (
-                             <div className="dropdown-menu">
-                                 <ul>
-                                     <li><Link to="/music"> * Котомузыка</Link></li>
-                                     <li><Link to="/runaway"> * Поймай кота</Link></li>
-                                    <li><Link to="/space"> * Космическое приключение</Link></li>
-                                 </ul>
-                             </div>
-                        )}
-                     </li>
-                    {isAuthenticated ? (
-                        <li>
+                            {/*<li><h1 className='logo-text'>Котостории</h1></li>*/}
+                            <li><Link to="/">CATS FANDOM               </Link></li>
+                            <li><Link to="/quiz"> | Квиз</Link></li>
+                            <li className="dropdown-wrapper">
+                                <span onClick={toggleDropdown} style={{cursor: 'pointer'}}> | Игры</span>
+                                {/* Компонент выпадающего меню */}
+                                {isDropdownOpen && (
+                                    <div className="dropdown-menu">
+                                        <ul>
+                                            <li><Link to="/music"> * Котомузыка</Link></li>
+                                            <li><Link to="/runaway"> * Поймай кота</Link></li>
+                                            <li><Link to="/space"> * Космическое приключение</Link></li>
+                                        </ul>
+                                    </div>
+                                )}
+                            </li>
+                            {isAuthenticated ? (
+                                <li>
 
-                            <Link to="/login" onClick={handleLogout}> | Выход</Link>
-                            <span> | Пользователь: {user.username}</span>
-                        </li>
-                    ) : (
-                        <li><Link to="/login"> | Войти</Link></li>
-                    )}
-                 </ul>
+                                    <Link to="/login" onClick={handleLogout}> | Выход</Link>
+                                    <Link to="/profile"> ---> ЛК: <b>{user.username}</b></Link>
+                                    {/*<span> ---> пользователь: <b>{user.username}</b></span>*/}
+                                </li>
+                            ) : (
+                                <li><Link to="/login"> | Войти</Link></li>
+                            )}
+                        </ul>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

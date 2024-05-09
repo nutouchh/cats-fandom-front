@@ -13,7 +13,7 @@ const HomePage = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/api/v1/cat/?is_published=true`);
+            const response = await axios.get(`/api/v1/cat/?is_published=true`);
             const publishedCats = response.data.filter(cat => cat.is_published); // Filter out unpublished cats
             const startIndex = (currentPage - 1) * 9; // Calculate start index for current page
             const endIndex = startIndex + 9; // Calculate end index for current page
