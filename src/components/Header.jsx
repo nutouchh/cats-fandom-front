@@ -126,7 +126,7 @@ function Header() {
                     <Nav className='nav-links'>
                         <ul>
                             {/*<li><h1 className='logo-text'>Котостории</h1></li>*/}
-                            <li><Link to="/">CATS FANDOM               </Link></li>
+                            <li><Link to="/"><b>C A T S     F A N D O M</b>               </Link></li>
                             <li><Link to="/quiz"> | Квиз</Link></li>
                             <li className="dropdown-wrapper">
                                 <span onClick={toggleDropdown} style={{cursor: 'pointer'}}> | Игры</span>

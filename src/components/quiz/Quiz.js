@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Typography } from 'antd';
+import {Container} from "react-bootstrap";
+import ParticlesComponent from "../Particles";
+
+const { Title, Text } = Typography;
 
 function Quiz({ questions }) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -35,30 +40,35 @@ function Quiz({ questions }) {
     }
 
     return (
-        <div className='app'>
-            {showScore ? (
-                <div className='score-section'>
-                    <p>You scored {score} out of {selectedQuestions.length}</p>
-                    <a href="/quiz">Пройти еще раз</a>
-                </div>
-            ) : (
-                <>
-                    <div className='question-section'>
-                        <div className='question-count'>
-                            <span>Question {currentQuestion + 1}</span>/{selectedQuestions.length}
+        <Container style={{position: "relative", height: "100vh", backgroundColor: "none"}}>
+            {/*<ParticlesComponent style={{position: "absolute", top: 0, left: 0, zIndex: -1}} id="particles"/>*/}
+            {/*<div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>*/}
+                <div>
+                {showScore ? (
+                    <div className='score-section'>
+                        <Title level={2}>Ваш счет {score} / {selectedQuestions.length}</Title>
+                        <Button href="/quiz">Попробовать снова</Button><br/>
+                        <Text style={{fontSize: '10px'}}>*вопросы не повторяются</Text>
+                    </div>
+                ) : (
+                    <>
+                        <div className='question-section'>
+                            <Title level={2}>Вопрос {currentQuestion + 1} / {selectedQuestions.length}</Title>
+                            <Text style={{fontSize: '20px'}}>{selectedQuestions[currentQuestion].questionText}</Text>
                         </div>
-                        <div className='question-text'>{selectedQuestions[currentQuestion].questionText}</div>
-                    </div>
-                    <div className='answer-section'>
-                        {selectedQuestions[currentQuestion].answerOptions.map((answerOption, index) => (
-                            <button key={index} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>
-                                {answerOption.answerText}
-                            </button>
-                        ))}
-                    </div>
-                </>
-            )}
-        </div>
+                        <br/>
+                        <div className='answer-section'>
+                            {selectedQuestions[currentQuestion].answerOptions.map((answerOption, index) => (
+                                <Button key={index} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
+                                        style={{margin: '8px'}}>
+                                    {answerOption.answerText}
+                                </Button>
+                            ))}
+                        </div>
+                    </>
+                )}</div>
+        {/*</div>*/}
+        </Container>
     );
 }
 

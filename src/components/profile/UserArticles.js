@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
+import {Table, Typography, Spin, Row, Col, Button} from 'antd';
 
-function UserArticles({ username , isStaff } ) {
+const { Title } = Typography;
+
+function UserArticles({ username, isStaff }) {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -11,7 +14,6 @@ function UserArticles({ username , isStaff } ) {
             try {
                 const response = await axios.get(`/api/v1/user_cats/${username}/`);
                 setArticles(response.data);
-                // console.log(articles);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching articles:', error);
@@ -19,35 +21,45 @@ function UserArticles({ username , isStaff } ) {
         }
 
         fetchArticles();
-    }, [username, articles]);
+    }, [username]);
+
+    const columns = [
+        {
+            title: 'Заголовок',
+            dataIndex: 'title',
+            key: 'title',
+            render: (text, record) => <Link to={`/cat/${record.slug}`}>{text}</Link>,
+        },
+        {
+            title: 'Дата создания',
+            dataIndex: 'time_create',
+            key: 'time_create',
+            render: (text) => formatDate(text),
+        },
+        {
+            title: 'Статус публикации',
+            dataIndex: 'is_published',
+            key: 'is_published',
+            render: (text) => (text ? 'Опубликовано' : 'Ожидает модерации'),
+        },
+    ];
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <Spin />;
     }
 
     return (
-        <div>
-            <h1>User Articles</h1>
-            <table>
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Time Created</th>
-                    <th>Published Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                {articles.map(article => (
-                    <tr key={article.id}>
-                        {/*<td><Link to={`/updatecat/${article.slug}`} className="card-link">{article.title}</Link></td>*/}
-                        <td><Link to={`/cat/${article.slug}`} className="card-link">{article.title}</Link></td>
-                        <td>{formatDate(article.time_create)}</td>
-                        <td>{article.is_published ? 'Published' : 'Not Published'}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-        </div>
+        <Row justify="center">
+            <Col span={20}>
+                <div>
+                    <Title level={2}>Твои предложенные статьи</Title>
+                    <Table columns={columns} dataSource={articles} rowKey="id" />
+                </div>
+            </Col>
+            <Button>
+                <Link to="/createcat">Добавить новую статью</Link>
+            </Button> <br/><br/>
+        </Row>
     );
 }
 
@@ -60,4 +72,5 @@ function formatDate(dateString) {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     return `${year}.${month}.${day} ${hours}:${minutes}`;
 }
+
 export default UserArticles;

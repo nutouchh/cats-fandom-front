@@ -32,6 +32,8 @@ import AddCatSuccessPage from "./pages/AddCatSuccessPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import UserArticles from "./components/profile/UserArticles";
 import UpdateCatForm from "./pages/UpdateCatForm";
+import ParticlesBg from 'particles-bg'
+import ParticlesComponent from "./components/Particles";
 axios.defaults.baseURL = "http://127.0.0.1:8000";
 
 // function App() {
@@ -145,15 +147,21 @@ function App() {
     const [selectedOption, setSelectedOption] = useState("");
     const [score, setScore] = useState(0);
     const [quizEnd, setQuizEnd] = useState(false);
-
+    // const [toastVisible, setToastVisible] = useState(false);
     return (
         <div className="App">
-            <ToastContainer hideProgressBar={true} newestOnTop={true} />
+            <ParticlesComponent style={{position: "absolute", top: 0, left: 0, zIndex: -1}} id="particles"/>
+            {/*<ToastContainer*/}
+            {/*    hideProgressBar={true}*/}
+            {/*    newestOnTop={true}*/}
+            {/*    style={{ display: 'none' }}*/}
+            {/*/>*/}
             <Header/>
+            {/*<ParticlesBg type="circle" bg={true} />*/}
             <Routes>
                 <Route path="/runaway" element={<RunawayCat />} />
                 <Route path="/quiz" element={<Quiz questions={questions} />} />
-                <Route path="/music" element={isAuthenticated ? <MusicRectangles /> : <Navigate to="/login?next=music" />} />
+                <Route path="/music" element={<MusicRectangles />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFoundPage />} />
@@ -161,10 +169,10 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/space" element={<SpaceCat />} />
                 <Route path="/createcat" element={<CreateCatForm />} />
-                <Route path="/updatecat/:slug" element={<UpdateCatForm />} />
-                <Route path="/success" element={<AddCatSuccessPage/>} />
-                <Route path="/profile" element={<UserProfilePage/>} />
-                <Route path="/user_articles" element={<UserArticles/>} />
+                <Route path="/updatecat/:slug" element={isAuthenticated ? <UpdateCatForm /> : <Navigate to="/login?next=/updatecat/:slug" />} />
+                <Route path="/success" element={isAuthenticated ? <AddCatSuccessPage /> : <Navigate to="/login?next=/success" />} />
+                <Route path="/profile" element={isAuthenticated ? <UserProfilePage /> : <Navigate to="/login?next=/profile" />} />
+                <Route path="/user_articles" element={isAuthenticated ? <UserArticles /> : <Navigate to="/login?next=/user_articles" />} />
 
 
                 {/*/!*<Route path="/quiz" element={<QuizContainer*!/*/}
@@ -176,8 +184,9 @@ function App() {
                 {/*    // setState={this.setState.bind(this)}*/}
                 {/*/>} />*/}
             </Routes>
-            {/*<Footer />*/}
+            <Footer />
         </div>
+
     );
 }
 

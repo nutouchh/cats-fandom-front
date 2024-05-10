@@ -2,6 +2,7 @@
     width: 100%;
     /*min-height: 77vh;*/
     /*width: 99vw;*/
+    /*background-color: #dee3f1;*/
     /*min-height: 100vh;*/
     display: flex;
     align-items: center;
@@ -11,9 +12,9 @@
 }
 
 .piano-container::before{
-    content: "Вы сделали правильный выбор! А теперь присоединяйтесь к нам и помогите коту-банану создать собственную мелодию. В вашем распоряжении множество ьразнообразных звуковых эффектов, которые помогут вам в этом творческом процессе!";
+    content: "Делай ТЫК";
     position: absolute;
-    top:18%;
+    top:15%;
     font-size: 13px;
 }
 

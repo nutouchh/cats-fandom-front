@@ -48,13 +48,15 @@ const Login = observer(() => {
             });
     };
 
+
+
     return (
-        <div>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>zz
             <Row justify="center">
                 <Col span={8}>
                     <Card>
                     <h1>Login</h1>
-                    <Form>
+                    <Form >
                         <Form.Item label="User name" validateStatus={usernameError ? 'error' : ''} help={usernameError}>
                             <Input
                                 type="text"

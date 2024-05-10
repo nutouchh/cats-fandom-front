@@ -1,11 +1,15 @@
 .footer {
-    background-color: #1c156e;
+    background-color: rgba(171, 142, 83, 0.61);
     color: #fff;
     padding: 20px 0;
     text-align: center;
     /*position: fixed;*/
-    bottom: 0;
+    /*bottom: -100px;*/
     width: 100%;
+    /*margin-top: -5000px;*/
+    flex-shrink: 0;
+    /*position: absolute;*/
+    bottom: 0;
   }
 
 

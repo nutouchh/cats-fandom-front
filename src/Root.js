@@ -19,7 +19,6 @@ const Root = ({ children, initialState = {} }) => {
         applyMiddleware(...middleware)
     );
 
-    // check localStorage
     if (!isEmpty(localStorage.getItem("token"))) {
         store.dispatch(setToken(localStorage.getItem("token")));
     }

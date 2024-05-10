@@ -1,11 +1,23 @@
-import { Link } from "react-router-dom";
-import Header from "../components/Header";
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {Button, Typography} from 'antd';
+import Title from "antd/es/skeleton/Title";
 
-export default function NotFoundPage() {
+const { Text } = Typography;
+
+const NotFoundPage = () => {
     return (
-        <div>
-            <Link to="/">иди лучше баловаться!!</Link>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh'
+        }}>
+            УПС!<br/>Такой страницы не существует<br/><br/>
+            <Button><Link to="/">Вернуться на главную страницу</Link></Button>
         </div>
     );
 };
+
+export default NotFoundPage;

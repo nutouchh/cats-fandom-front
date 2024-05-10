@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './style/MusicRectangles.css'; // Для стилей
-import music1 from "./music/oiia.mp3"; // Путь к вашему аудиофайлу
+import './style/MusicRectangles.css';
+import music1 from "./music/oiia.mp3";
 import music2 from "./music/m-e-o-w.mp3";
 import music3 from "./music/huh-cat.mp3";
 import music4 from "./music/cats-arguing.mp3";
@@ -18,7 +18,6 @@ import music13 from "./music/chipi-chapa-cat-meme.mp3";
 const MusicRectangles = () => {
     const [currentTrack, setCurrentTrack] = useState(null);
 
-    // Предположим, у вас есть ссылки на аудиофайлы
     const tracks = [
         music1,
         music2,
@@ -33,7 +32,6 @@ const MusicRectangles = () => {
         music11,
         music12,
         music13
-        // Добавьте все ваши треки
     ];
 
     const playAudio = (trackIndex) => {
@@ -43,7 +41,6 @@ const MusicRectangles = () => {
         }
         audio.play();
         setCurrentTrack(audio);
-        // Остановить воспроизведение через 3 секунды
         setTimeout(() => {
             audio.pause();
         }, 5000);
