@@ -9,7 +9,7 @@ const history = createBrowserHistory();
 
 const createRootReducer = () =>
     combineReducers({
-        router: routerReducer(history), // Используем routerReducer с переданным объектом history
+        router: routerReducer(history),
         createUser: signupReducer,
         auth: loginReducer
     });

@@ -36,7 +36,7 @@ const CreateCatForm = () => {
 
     const beforeUpload = (file) => {
         setPhotoFile(file);
-        return false; // Prevent antd Upload component from uploading the file automatically
+        return false;
     };
 
     return (

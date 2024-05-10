@@ -93,6 +93,10 @@ const HomePage = () => {
                 {currentPage < totalPages &&
                     <Button onClick={handleNextPage}  style={{margin: '10px' ,marginBottom: '20px'}}>Дальше</Button>}
             </div>
+            <Card style={{ background: 'transparent' , border: 'none'}}><p>
+                Хотите предложить статью? --> <Link to="/signup">Зарегистрируйтесь</Link>
+            </p></Card>
+
         </div>
     );
 };

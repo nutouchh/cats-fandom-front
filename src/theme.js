@@ -4,8 +4,8 @@ const theme = {
                 colorPrimary: '#ab8e53', //цвет кнопки
                 fontFamily: "DotGothic16",
         colorBgContainer: '#ffffff', //цвет cart
-        colorLink: '#d700b5',
-        colorTextBase: '#796B50FF',
+        colorLink: '#7e84ab',
+        colorTextBase: '#967d4a',
             }
 };
 

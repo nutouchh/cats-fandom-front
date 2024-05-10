@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Button, Typography, Table } from 'antd';
+import {Button, Typography,Spin} from 'antd';
 import UserArticles from '../components/profile/UserArticles';
 
 const { Title, Paragraph } = Typography;
@@ -34,7 +33,7 @@ const UserProfilePage = () => {
     };
 
     if (!userData || daysSinceJoined === null) {
-        return <div>Loading...</div>;
+        return <Spin size="large" />;
     }
 
     return (

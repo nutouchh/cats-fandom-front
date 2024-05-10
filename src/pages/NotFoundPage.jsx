@@ -1,22 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Button, Typography} from 'antd';
-import Title from "antd/es/skeleton/Title";
+import {Button} from 'antd';
+import {Container} from "react-bootstrap";
 
-const { Text } = Typography;
 
 const NotFoundPage = () => {
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100vh'
-        }}>
+        <Container style={{position: "relative", height: "100vh", backgroundColor: "none"}}>
+            {/*<ParticlesComponent style={{position: "absolute", top: 0, left: 0, zIndex: -1}} id="particles"/>*/}
+            {/*<div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>*/}
+            <div>
+
             УПС!<br/>Такой страницы не существует<br/><br/>
+
             <Button><Link to="/">Вернуться на главную страницу</Link></Button>
         </div>
+        </Container>
     );
 };
 

@@ -26,7 +26,7 @@ const Login = observer(() => {
     };
 
     const onLoginClick = () => {
-        console.log("Login button clicked"); // Добавленный вывод в консоль
+        console.log("Login button clicked");
         const userData = {
             // username: username,
             // password: password
@@ -55,35 +55,35 @@ const Login = observer(() => {
             <Row justify="center">
                 <Col span={8}>
                     <Card>
-                    <h1>Login</h1>
+                    <h1>Вход</h1>
                     <Form >
-                        <Form.Item label="User name" validateStatus={usernameError ? 'error' : ''} help={usernameError}>
+                        <Form.Item label="Имя пользователя" validateStatus={usernameError ? 'error' : ''} help={usernameError}>
                             <Input
                                 type="text"
                                 name="username"
-                                placeholder="Enter user name"
+                                placeholder="Введите имя пользователя"
                                 value={username}
                                 onChange={onChangeUsername}
                             />
                         </Form.Item>
 
-                        <Form.Item label="Your password" validateStatus={passwordError ? 'error' : ''} help={passwordError}>
+                        <Form.Item label="Пароль" validateStatus={passwordError ? 'error' : ''} help={passwordError}>
                             <Input.Password
                                 type="password"
                                 name="password"
-                                placeholder="Enter password"
+                                placeholder="Введите пароль"
                                 value={password}
                                 onChange={onChangePassword}
                             />
                         </Form.Item>
                         <Form.Item>
                             <Button type="primary" onClick={onLoginClick}>
-                                Login
+                                Войти
                             </Button>
                         </Form.Item>
                     </Form>
                     <p className="mt-2">
-                        Don't have an account? <Link to="/signup">Signup</Link>
+                        Нет аккаунта? <Link to="/signup">Зарегистрироваться</Link>
                     </p>
                 </Card>
                 </Col>

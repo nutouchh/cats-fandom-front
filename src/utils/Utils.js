@@ -1,11 +1,5 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import {useSelector} from "react-redux";
-
-
-// export const isEmpty = (value) => {
-//     return value === null || value === undefined || value === '';
-// };
 
 export const isEmpty = value =>
     value === undefined ||
@@ -16,10 +10,8 @@ export const isEmpty = value =>
 
 export const setAxiosAuthToken = token => {
     if (typeof token !== "undefined" && token) {
-        // Apply for every request
         axios.defaults.headers.common["Authorization"] = "Token " + token;
     } else {
-        // Delete auth header
         delete axios.defaults.headers.common["Authorization"];
     }
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Typography } from 'antd';
+import {Button, Spin, Typography} from 'antd';
 import {Container} from "react-bootstrap";
 import ParticlesComponent from "../Particles";
 
@@ -36,8 +36,11 @@ function Quiz({ questions }) {
     };
 
     if (selectedQuestions.length === 0) {
-        return <div>Loading...</div>; // Display a loading message while questions are being loaded
+        return (
+            <Spin size="large" />
+        )
     }
+
 
     return (
         <Container style={{position: "relative", height: "100vh", backgroundColor: "none"}}>

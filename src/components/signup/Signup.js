@@ -3,10 +3,10 @@ import { Button, Card, Form, Input, Row, Col } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { useDispatch } from 'react-redux'; // Импортируем хук useDispatch
-import { signupNewUser } from './SignupActions'; // Импортируем thunk-действие
+import { signupNewUser } from './SignupActions';
 
 const Signup = observer(() => {
-    const dispatch = useDispatch(); // Получаем функцию dispatch из хука useDispatch
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
@@ -29,7 +29,7 @@ const Signup = observer(() => {
             username,
             password,
         };
-        dispatch(signupNewUser(userData)) // Вызываем thunk-действие signupNewUser с помощью dispatch
+        dispatch(signupNewUser(userData))
             .then(() => {
                 navigate('/login');
             })
@@ -48,20 +48,20 @@ const Signup = observer(() => {
             <Row justify="center">
                 <Col span={8}>
                     <Card>
-                        <h1>Sign up</h1>
+                        <h1>Регистрация</h1>
                         <Form>
-                            <Form.Item label="User name" validateStatus={usernameError ? 'error' : ''} help={usernameError}>
+                            <Form.Item label="Имя пользователя" validateStatus={usernameError ? 'error' : ''} help={usernameError}>
                                 <Input
                                     type="text"
-                                    placeholder="Enter user name"
+                                    placeholder="Введите имя пользователя"
                                     value={username}
                                     onChange={onChangeUsername}
                                 />
                             </Form.Item>
 
-                            <Form.Item label="Your password"  validateStatus={passwordError ? 'error' : ''} help={passwordError}>
+                            <Form.Item label="Пароль"  validateStatus={passwordError ? 'error' : ''} help={passwordError}>
                                 <Input.Password
-                                    placeholder="Enter password"
+                                    placeholder="Введите пароль"
                                     value={password}
                                     onChange={onChangePassword}
                                 />
@@ -69,12 +69,12 @@ const Signup = observer(() => {
 
                             <Form.Item>
                                 <Button type="primary" onClick={onSignupClick}>
-                                    Sign up
+                                    Зарегистрироваться
                                 </Button>
                             </Form.Item>
                         </Form>
                         <p>
-                            Already have an account? <Link to="/login">Login</Link>
+                            Уже есть аккаунт? <Link to="/login">Войти</Link>
                         </p>
                     </Card>
                 </Col>
