@@ -11,7 +11,7 @@ export const signupNewUser = userData => dispatch => {
     dispatch({ type: CREATE_USER_SUBMITTED }); // устанавливаем состояние "запрос отправлен"
     // возвращаем обещание, чтобы его можно было использовать в компоненте
     return axios
-        .post("http://127.0.0.1:8000/api/v1/auth/users/", userData)
+        .post("/api/v1/auth/users/", userData)
         .then(response => {
             // если запрос выполнен успешно, показываем сообщение об успешной регистрации
             toast.success(

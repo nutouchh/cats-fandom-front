@@ -23,7 +23,7 @@ import UserProfilePage from "./pages/UserProfilePage";
 import UserArticles from "./components/profile/UserArticles";
 import UpdateCatForm from "./pages/UpdateCatForm";
 import ParticlesComponent from "./components/Particles";
-axios.defaults.baseURL = "http://127.0.0.1:8000";
+axios.defaults.baseURL = "http://78.24.223.20:8000";
 
 
 function App() {
