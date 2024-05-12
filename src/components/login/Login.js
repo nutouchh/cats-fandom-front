@@ -51,7 +51,7 @@ const Login = observer(() => {
 
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>zz
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
             <Row justify="center">
                 <Col span={8}>
                     <Card>
