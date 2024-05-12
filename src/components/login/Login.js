@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import {Button, Card, Col, Form, Input, Row} from "antd";
-import {Link, useHistory, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {login} from "./LoginActions";
 import {useDispatch} from "react-redux";
 import {observer} from "mobx-react-lite";
